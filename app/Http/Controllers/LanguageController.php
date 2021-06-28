@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Language;
+use App\Models\LanguageGroups;
 use App\Models\LanguagePhraseTranslate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LanguageController extends Controller
 {
@@ -38,6 +40,17 @@ class LanguageController extends Controller
 
     public function groups()
     {
+        $languageGroups = LanguageGroups::all();
+        return view('admin.language_group_list', compact('languageGroups'));
+    }
+
+    public function groupAdd(Request $request)
+    {
+        LanguageGroups::create([
+            'name' => Str::slug($request->name, '-'),
+            'description' => $request->description
+        ]);
+        return redirect()->route('language.groups');
     }
 
     public function groupDetail()

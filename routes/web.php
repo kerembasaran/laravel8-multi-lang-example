@@ -32,7 +32,8 @@ Route::prefix('admin')->group(function () {
     Route::get('language', [LanguageController::class, 'langList'])->name('language.langList');
     Route::post('language/add', [LanguageController::class, 'languageAdd'])->name('language.add');
     Route::get('language/groups', [LanguageController::class, 'groups'])->name('language.groups');
-    Route::get('language/groups{id}', [LanguageController::class, 'groupDetail'])->name('language.groupDetail');
+    Route::post('language/groups/add', [LanguageController::class, 'groupAdd'])->name('language.groups.add');
+    Route::get('language/groups/{id}', [LanguageController::class, 'groupDetail'])->name('language.groupDetail');
     Route::get('language/phrase-add', [LanguageController::class, 'phraseAddShowForm'])->name('language.phraseAdd');
     Route::post('language/phrase-add', [LanguageController::class, 'phraseAdd']);
 

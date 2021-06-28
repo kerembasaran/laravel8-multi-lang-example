@@ -8,7 +8,7 @@
                 <a class="nav-link" href="{{ route('language.langList') }}">Language</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Language Groups</a>
+                <a class="nav-link" href="{{ route('language.groups') }}">Language Groups</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Language Phrase Add</a>
