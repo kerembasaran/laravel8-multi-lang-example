@@ -23,3 +23,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('langu
 });
 
 
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    })->name('admin.index');
+});
