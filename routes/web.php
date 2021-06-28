@@ -14,4 +14,12 @@ use App\Http\Controllers\FrontController;
 |
 */
 
-Route::get('/', [FrontController::class, 'index'])->name('anasayfa');
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
+
+Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('language')->group(function () {
+    Route::get('/', [FrontController::class, 'index'])->name('anasayfa');
+});
+
+
