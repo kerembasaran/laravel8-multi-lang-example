@@ -5,7 +5,13 @@
                 <a class="nav-link active" href="{{ route('admin.index') }}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Orders</a>
+                <a class="nav-link" href="{{ route('language.langList') }}">Language</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Language Groups</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Language Phrase Add</a>
             </li>
         </ul>
     </div>
