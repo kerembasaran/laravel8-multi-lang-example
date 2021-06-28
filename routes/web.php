@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('language')->group(function () {
-    Route::get('/', [FrontController::class, 'index'])->name('anasayfa');
+    Route::get('/', [FrontController::class, 'index'])->name('index');
 });
 
 
