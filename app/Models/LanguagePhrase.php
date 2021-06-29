@@ -12,4 +12,10 @@ class LanguagePhrase extends Model
     protected $table = 'language_phrase';
     protected $primaryKey = 'id';
     protected $guarded = [];
+
+    public function translate()
+    {
+        return $this->hasMany('App\Models\LanguagePhraseTranslate', 'phrase_id', 'id')
+            ->orderBy('language_id', 'ASC');
+    }
 }

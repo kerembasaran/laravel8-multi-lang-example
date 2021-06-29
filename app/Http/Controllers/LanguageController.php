@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use App\Models\LanguageGroups;
+use App\Models\LanguagePhrase;
 use App\Models\LanguagePhraseTranslate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -53,8 +54,33 @@ class LanguageController extends Controller
         return redirect()->route('language.groups');
     }
 
-    public function groupDetail()
+    public function groupDetail(Request $request)
     {
+        $id = $request->id;
+        $languages = Language::all();
+
+        $phraseList = LanguagePhrase::with('translate')
+            ->where('language_group_id', $id)
+            ->get();
+
+        return view('admin.language_group_list_detail', compact('languages', 'phraseList'));
+
+    }
+
+    public function groupDetailGetText(Request $request)
+    {
+        $dataID = $request->dataID;
+        $phrase = LanguagePhraseTranslate::where('id', $dataID)->select('value')->first();
+        return response()->json(['content' => $phrase->value]);
+    }
+
+    public function groupDetailUpdate(Request $request)
+    {
+        $translateID = $request->translateID;
+        LanguagePhraseTranslate::where('id', $translateID)->update([
+            'value' => $request->phrase
+        ]);
+        return redirect()->back();
     }
 
     public function phraseAddShowForm()

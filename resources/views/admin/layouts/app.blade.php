@@ -46,7 +46,7 @@
 </div>
 
 
-<script src="{{ asset('assets/jquery-3.5.1/jquery-3.5.1.slim.min.js') }}"></script>
+<script src="{{ asset('assets/jquery-3.5.1/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('assets/admin/dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/dashboard.js') }}"></script>
 @yield('js')
