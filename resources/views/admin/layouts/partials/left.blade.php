@@ -11,7 +11,7 @@
                 <a class="nav-link" href="{{ route('language.groups') }}">Language Groups</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Language Phrase Add</a>
+                <a class="nav-link" href="{{ route('language.phraseAdd') }}">Language Phrase Add</a>
             </li>
         </ul>
     </div>

@@ -85,9 +85,28 @@ class LanguageController extends Controller
 
     public function phraseAddShowForm()
     {
+        $languageGroups = LanguageGroups::all();
+        return view('admin.language_phrase_add', compact('languageGroups'));
     }
 
-    public function phraseAdd()
+    public function phraseAdd(Request $request)
     {
+        $languageGroupID = $request->language_group;
+        $phrase = Str::slug($request->phrase, '-');
+        $phraseValue = $request->phrase_value;
+
+        $languagePhrase = LanguagePhrase::create([
+            'key' => $phrase,
+            'language_group_id' => $languageGroupID
+        ]);
+
+        foreach (Language::all() as $language) {
+            LanguagePhraseTranslate::create([
+                'value' => $phraseValue,
+                'phrase_id' => $languagePhrase->id,
+                'language_id' => $language->id
+            ]);
+        }
+        return redirect()->route('language.langList');
     }
 }
