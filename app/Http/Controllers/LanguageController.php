@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\LanguageHepler;
 use App\Models\Language;
 use App\Models\LanguageGroups;
 use App\Models\LanguagePhrase;
@@ -47,10 +48,11 @@ class LanguageController extends Controller
 
     public function groupAdd(Request $request)
     {
-        LanguageGroups::create([
+        LanguageHepler::groupAdd($request->name, $request->description);
+        /*LanguageGroups::create([
             'name' => Str::slug($request->name, '-'),
             'description' => $request->description
-        ]);
+        ]);*/
         return redirect()->route('language.groups');
     }
 
@@ -91,7 +93,7 @@ class LanguageController extends Controller
 
     public function phraseAdd(Request $request)
     {
-        $languageGroupID = $request->language_group;
+        /*$languageGroupID = $request->language_group;
         $phrase = Str::slug($request->phrase, '-');
         $phraseValue = $request->phrase_value;
 
@@ -106,7 +108,10 @@ class LanguageController extends Controller
                 'phrase_id' => $languagePhrase->id,
                 'language_id' => $language->id
             ]);
-        }
+        }*/
+
+        LanguageHepler::phraseTranslateAdd($request->language_group, $request->phrase, $request->phrase_value);
+
         return redirect()->route('language.langList');
     }
 }

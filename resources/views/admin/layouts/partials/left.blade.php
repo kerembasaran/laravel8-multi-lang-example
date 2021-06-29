@@ -13,6 +13,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('language.phraseAdd') }}">Language Phrase Add</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('occupation.add') }}">Occupation Add</a>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link font-weight-bold"> Office Management</span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('office.list') }}">Office List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('office.add') }}">New Office</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('survey.question.add') }}">Survey Add Questions</a>
+            </li>
         </ul>
     </div>
 </nav>

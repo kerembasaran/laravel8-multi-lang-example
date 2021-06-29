@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\SurveyQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,14 +32,31 @@ Route::prefix('admin')->group(function () {
         return view('admin.index');
     })->name('admin.index');
 
-    Route::get('language', [LanguageController::class, 'langList'])->name('language.langList');
-    Route::post('language/add', [LanguageController::class, 'languageAdd'])->name('language.add');
-    Route::get('language/groups', [LanguageController::class, 'groups'])->name('language.groups');
-    Route::post('language/groups/add', [LanguageController::class, 'groupAdd'])->name('language.groups.add');
-    Route::get('language/groups/{id}', [LanguageController::class, 'groupDetail'])->name('language.groupDetail');
-    Route::post('language/groups/detail-update/getText', [LanguageController::class, 'groupDetailGetText'])->name('language.groupDetail.getText');
-    Route::post('language/groups/detail-update', [LanguageController::class, 'groupDetailUpdate'])->name('language.groupDetailUpdate');
-    Route::get('language/phrase-add', [LanguageController::class, 'phraseAddShowForm'])->name('language.phraseAdd');
-    Route::post('language/phrase-add', [LanguageController::class, 'phraseAdd']);
+    Route::prefix('language')->group(function () {
+        Route::get('/', [LanguageController::class, 'langList'])->name('language.langList');
+        Route::post('/add', [LanguageController::class, 'languageAdd'])->name('language.add');
+        Route::get('/groups', [LanguageController::class, 'groups'])->name('language.groups');
+        Route::post('/groups/add', [LanguageController::class, 'groupAdd'])->name('language.groups.add');
+        Route::get('/groups/{id}', [LanguageController::class, 'groupDetail'])->name('language.groupDetail');
+        Route::post('/groups/detail-update/getText', [LanguageController::class, 'groupDetailGetText'])->name('language.groupDetail.getText');
+        Route::post('/groups/detail-update', [LanguageController::class, 'groupDetailUpdate'])->name('language.groupDetailUpdate');
+        Route::get('/phrase-add', [LanguageController::class, 'phraseAddShowForm'])->name('language.phraseAdd');
+        Route::post('/phrase-add', [LanguageController::class, 'phraseAdd']);
+    });
 
+    Route::prefix('occupation')->group(function () {
+        Route::get('/add', [OccupationController::class, 'occupationAddShow'])->name('occupation.add');
+        Route::post('/add', [OccupationController::class, 'occupationAdd']);
+    });
+
+    Route::prefix('office')->group(function () {
+        Route::get('/list', [OfficeController::class, 'list'])->name('office.list');
+        Route::get('/add', [OfficeController::class, 'addShow'])->name('office.add');
+        Route::post('/add', [OfficeController::class, 'add']);
+    });
+
+    Route::prefix('survey')->group(function () {
+        Route::get('/question-add', [SurveyQuestionController::class, 'addShow'])->name('survey.question.add');
+        Route::post('/question-add', [SurveyQuestionController::class, 'add']);
+    });
 });
